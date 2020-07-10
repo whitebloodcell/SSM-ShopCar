@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhs.shopcar.mapper.OrderItemMapper">
+  <resultMap id="BaseResultMap" type="com.lhs.shopcar.domain.entity.OrderItem">
+    <!--@mbg.generated-->
+    <!--@Table tb_order_item-->
+    <id column="order_item_id" jdbcType="INTEGER" property="orderItemId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="product_pic" jdbcType="VARCHAR" property="productPic" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_price" jdbcType="DECIMAL" property="productPrice" />
+    <result column="product_quantity" jdbcType="INTEGER" property="productQuantity" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+
+
+</mapper>

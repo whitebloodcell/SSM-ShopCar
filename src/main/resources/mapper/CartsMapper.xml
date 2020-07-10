@@ -1,0 +1,54 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhs.shopcar.mapper.CartsMapper">
+    <resultMap id="BaseResultMap" type="Carts">
+        <id column="cart_id" property="cartId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="quantity" property="quantity"/>
+        <result column="price" property="price"/>
+        <result column="product_pic" property="productPic"/>
+        <result column="product_name" property="productName"/>
+        <result column="product_attr" property="productAttr"/>
+        <result column="status" property="status"/>
+        <result column="create_date" property="createDate"/>
+        <result column="update_date" property="updateDate"/>
+        <result column="pid" property="pid"/>
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO carts
+        (member_id, quantity, price, product_pic, product_name, product_attr,pid)
+        VALUES(#{carts.memberId},#{carts.quantity},#{carts.price},#{carts.productPic},#{carts.productName},#{carts.productAttr},#{carts.pid})
+    </insert>
+    <update id="updata">
+        UPDATE carts
+        SET quantity = #{num}
+        WHERE cart_id = #{cartsId}
+        AND status = 1
+    </update>
+    <select id="selectByMidAndPid" resultMap="BaseResultMap">
+        SELECT cart_id, member_id, quantity, price, product_pic, product_name, product_attr, pid
+        FROM carts
+        WHERE member_id = #{mid}
+        AND pid = #{pid}
+        AND status = 1
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT member_id, quantity, price, product_pic, product_name, product_attr, pid
+        FROM carts
+        WHERE member_id = #{mid}
+        AND status = 1
+    </select>
+
+    <update id="updateStatusByCartsId">
+        UPDATE carts
+        SET status = 0
+        WHERE cart_id IN
+        <foreach collection="cids" item="cid" separator="," open="(" close=")">
+            #{cid}
+        </foreach>
+        AND status =1
+    </update>
+
+
+</mapper>
